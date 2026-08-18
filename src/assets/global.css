@@ -1,0 +1,571 @@
+body {
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff !important;
+}
+
+.nav-link {
+  color: #fff !important;
+  margin-left: 15px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #ccc !important;
+}
+
+.nav-link.active {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -3px;
+  background: #fff;
+  transition: 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ---------- Buttons ---------- */
+.btn-custom,
+.btn-enter {
+  background: #fff;
+  color: #000;
+  padding: 12px 35px;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-custom:hover,
+.btn-enter:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #fff;
+  color: #000;
+}
+
+/* ---------- Hero sections ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.page-header.hero-section {
+  min-height: 50vh;
+  padding: 180px 0 80px;
+}
+
+.bg-home { background-image: url('./images/bg_poster2.png'); }
+.bg-index { background-image: url('./images/HD_page.png'); background-attachment: fixed; }
+.bg-about { background-image: url('./images/ab.png'); }
+.bg-price { background-image: url('./images/product1.png'); }
+.bg-contact { background-image: url('./images/b1.png'); }
+.bg-motivation { background-image: url('./images/Motivation3.jpg'); }
+
+@media (max-width: 768px) {
+  .bg-index { background-image: url('./images/mobile_screen.jpg'); background-attachment: scroll; }
+  .bg-price { background-image: url('./images/mobile_product.jpg'); background-position: right; }
+  .bg-contact { background-position: right; }
+  .arrow { transform: rotate(90deg); display: inline-block; }
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 20px;
+  border: none;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card-custom {
+  background: #111;
+  border: none;
+  color: #fff;
+  transition: 0.4s;
+}
+
+.card-custom:hover {
+  transform: translateY(-10px);
+}
+
+.after-card {
+  animation: glow 2s infinite;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 10px #fff; }
+  50% { box-shadow: 0 0 30px #fff; }
+  100% { box-shadow: 0 0 10px #fff; }
+}
+
+.text-card {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 20px;
+  min-height: 200px;
+  padding: 20px;
+}
+
+.card-mission {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: #fff;
+  min-height: 200px;
+}
+
+.arrow {
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+/* ---------- Product / dashboard cards ---------- */
+.product-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  transition: 0.4s;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+.product-card img,
+.card img.card-img-top {
+  height: 400px;
+  object-fit: cover;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.badge-featured {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  padding: 8px 12px;
+  z-index: 2;
+}
+
+.feature-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+  min-height: 170px;
+}
+
+.feature-box:hover {
+  transform: translateY(-8px);
+}
+
+/* ---------- Contact page ---------- */
+.contact-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.contact-card i {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.contact-form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 15px;
+}
+
+.contact-form .form-control {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-form .form-control::placeholder {
+  color: #999;
+}
+
+.contact-form .form-control:focus {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: #fff;
+  box-shadow: none;
+}
+
+.social-icon {
+  color: #fff;
+  font-size: 2rem;
+  margin: 0 15px;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.social-icon:hover {
+  color: #ccc;
+  transform: translateY(-5px);
+}
+
+.map-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 50px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* ---------- Footer ---------- */
+.footer-luxury {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 70px 20px 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-logo {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 8px;
+  margin-bottom: 15px;
+}
+
+.footer-slogan {
+  color: #aaa;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 35px;
+}
+
+.footer-links {
+  margin-bottom: 35px;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 20px;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  transition: 0.3s;
+  position: relative;
+}
+
+.footer-links a:hover {
+  color: #ccc;
+}
+/* Noted text hover */
+.noted:hover {
+  color: blue;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -5px;
+  background: #fff;
+  transition: 0.3s;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+.footer-copy {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .footer-logo { font-size: 2rem; letter-spacing: 4px; }
+  .footer-links a { display: block; margin: 12px 0; }
+}
+
+/* ---------- Auth pages ---------- */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 60px;
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  padding: 40px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-card .form-control {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.auth-card .form-control:focus {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: #fff;
+  box-shadow: none;
+}
+
+.auth-card .form-control::placeholder {
+  color: #999;
+}
+
+/* ---------- Dashboard layout ---------- */
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+.dashboard-sidebar {
+  width: 250px;
+  background: rgba(0, 0, 0);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px 0;
+  flex-shrink: 0;
+  transition: left 0.3s ease;
+}
+
+.dashboard-sidebar-overlay {
+  display: none;
+}
+
+.dashboard-sidebar .sidebar-brand {
+  font-weight: bold;
+  letter-spacing: 3px;
+  padding: 10px 25px 25px;
+  font-size: 1.2rem;
+}
+
+.dashboard-sidebar .sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ccc;
+  padding: 12px 25px;
+  cursor: pointer;
+  transition: 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.dashboard-sidebar .sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.dashboard-sidebar .sidebar-link.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-left: 3px solid #fff;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 30px;
+  overflow-x: auto;
+}
+
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 25px;
+  color: #fff;
+  height: 100%;
+}
+
+.account-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 25px;
+  color: #fff;
+  height: 100%;
+}
+
+.dashboard-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.table-dark-custom {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-dark-custom th {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  font-weight: 600;
+}
+
+.table-dark-custom td {
+  border-color: rgba(255, 255, 255, 0.08);
+  vertical-align: middle;
+}
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-active {
+  background: rgba(40, 200, 120, 0.2);
+  color: #3ddc84;
+}
+
+.status-inactive {
+  background: rgba(255, 80, 80, 0.2);
+  color: #ff5050;
+}
+
+.spinner-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+}
+
+.not-found-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.not-found-wrapper h1 {
+  font-size: 8rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .dashboard-sidebar {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    bottom: 0;
+    z-index: 1050;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+  }
+  .dashboard-sidebar.open {
+    left: 0;
+  }
+  .dashboard-sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1040;
+    animation: fadeIn 0.2s ease;
+  }
+  .dashboard-main {
+    padding: 20px 15px;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .dashboard-sidebar {
+    width: 220px;
+    left: -230px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
