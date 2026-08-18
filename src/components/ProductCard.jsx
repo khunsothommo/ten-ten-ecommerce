@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useCart } from '../context/CartContext';
+import { resolveProductImage } from '../utils/productImages';
 
 export default function ProductCard({ product }) {
   const { name, description, price, image, status } = product;
+  const imageUrl = resolveProductImage(image);
   const { addItem } = useCart();
   const navigate = useNavigate();
   const [justAdded, setJustAdded] = useState(false);
@@ -26,9 +28,9 @@ export default function ProductCard({ product }) {
       {status === 'inactive' ? null : (
         <div className="badge-featured">{status === 'new' ? 'NEW' : 'BEST SELLER'}</div>
       )}
-      {image ? (
+      {imageUrl ? (
         <img
-          src={image}
+          src={imageUrl}
           className="card-img-top"
           alt={name}
           onError={(e) => {

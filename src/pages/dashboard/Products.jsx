@@ -7,6 +7,7 @@ import { fallbackProducts } from '../../utils/seedProducts';
 import SearchBar from '../../components/SearchBar';
 import Modal from '../../components/Modal';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import { resolveProductImage } from '../../utils/productImages';
 
 export default function Products() {
   const { products, loading } = useProducts();
@@ -157,7 +158,7 @@ export default function Products() {
                     <td>
                       {p.image ? (
                         <img
-                          src={p.image}
+                          src={resolveProductImage(p.image)}
                           alt={p.name}
                           style={{ width: 48, height: 48, objectFit: 'cover', borderRadius: 8 }}
                           onError={(e) => {
