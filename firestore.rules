@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null &&
+        request.auth.token.email in [
+          'admin@tenten.com'
+        ];
+    }
+
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+    match /users/{userId} {
+      // Anyone can create their own profile doc on registration;
+      // only the user themself or an admin can read/update it.
+      allow create: if request.auth != null && request.auth.uid == userId;
+      allow read, update: if request.auth != null &&
+        (request.auth.uid == userId || isAdmin());
+      allow delete: if isAdmin();
+    }
+    match /contact_messages/{messageId} {
+      // Anyone can submit a message from the public Contact page;
+      // only admins can read, mark read/unread, or delete them —
+      // this collection is never publicly readable.
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+    match /carts/{userId} {
+      // Each user's cart is private to them (and admins, for support).
+      allow read, write: if request.auth != null &&
+        (request.auth.uid == userId || isAdmin());
+    }
+    match /orders/{orderId} {
+      // Anyone (including guests) can place an order; only the order's
+      // own owner or an admin can read it back; only admins can change
+      // its status or delete it.
+      allow create: if true;
+      allow read: if isAdmin() ||
+        (request.auth != null && resource.data.uid == request.auth.uid);
+      allow update, delete: if isAdmin();
+    }
+  }
+}
