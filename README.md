@@ -338,6 +338,72 @@ src/
   `/dashboard/orders`, with search/filter/sort and a status dropdown
   (pending → processing → completed/cancelled).
 
+## Deployment
+
+The app is a static single-page app after `npm run build` — it can be hosted
+anywhere that serves static files with SPA-style routing (all paths falling
+back to `index.html`). Two options are set up in this repo.
+
+### Option A: GitHub Pages (currently live)
+
+Live at **https://khunsothommo.github.io/ten-ten-ecommerce/**, deployed
+automatically by `.github/workflows/deploy.yml` on every push to `main`.
+
+**How it works:**
+1. `vite.config.js` sets `base: '/ten-ten-ecommerce/'` — required because
+   GitHub Pages serves project sites from a subpath
+   (`username.github.io/repo-name/`), not the domain root. Without this,
+   the built `index.html` would reference asset paths like `/assets/...`
+   instead of `/ten-ten-ecommerce/assets/...`, and every request would 404.
+2. The workflow checks out the repo, installs dependencies, runs
+   `npm run build`, and uploads **`dist/`** (not the repo root) as the
+   Pages artifact — this is what makes the live site serve the compiled
+   bundle instead of raw source files like `/src/main.jsx`, which only
+   Vite's dev server knows how to handle.
+3. Firebase config (`VITE_FIREBASE_API_KEY` etc.) is injected into the
+   `Build` step from **GitHub repository secrets** — Settings → Secrets
+   and variables → Actions. `.env` is gitignored and never reaches the
+   CI runner on its own, so these must be added there manually, once,
+   using the same values as your local `.env`. Without them, the app
+   builds "successfully" but crashes at runtime with
+   `Firebase: Error (auth/invalid-api-key)`, because every
+   `import.meta.env.VITE_FIREBASE_*` gets baked in as `undefined`.
+   The workflow's `Check Firebase environment` step prints `SET`/`MISSING`
+   for each one in the Actions log, so a misconfigured secret is visible
+   immediately without needing to inspect the built bundle.
+
+**To deploy:** just push to `main` — no manual steps. To redeploy without a
+code change (e.g. after adding a missing secret), re-run the workflow from
+the Actions tab (`workflow_dispatch` is enabled).
+
+### Option B: Firebase Hosting (alternative)
+
+Since the app already lives entirely on Firebase (Auth, Firestore, Storage),
+Firebase Hosting is a natural alternative — same project, no extra account.
+
+```bash
+npm install -g firebase-tools   # once
+firebase login                  # once
+firebase use --add              # link this folder to your Firebase project
+npm run deploy                  # builds, then deploys dist/ to Hosting
+```
+
+`firebase.json`'s `hosting.public` points at **`dist`** (the build output),
+with a catch-all rewrite to `index.html` for client-side routing — same
+requirement as GitHub Pages, just configured differently. Unlike GitHub
+Pages, Firebase Hosting serves from the domain root, so no `base` path
+juggling is needed if you switch to this as your primary host.
+
+Firestore rules and indexes are also version-controlled
+(`firestore.rules`, `firestore.indexes.json`) and can be deployed with:
+
+```bash
+firebase deploy --only firestore:rules
+```
+
+instead of manually pasting the ruleset into the Firebase Console each time
+it changes.
+
 ## Notes
 
 - Deleting a product from the dashboard always shows a confirmation modal.
