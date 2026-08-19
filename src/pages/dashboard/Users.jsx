@@ -81,7 +81,7 @@ export default function Users() {
                     <td>{u.name || '—'}</td>
                     <td>{u.email}</td>
                     <td>
-                      <span className="status-badge status-active">{u.role || 'admin'}</span>
+                      <span className="status-badge status-active">{u.role || 'user'}</span>
                     </td>
                     <td className="text-50 small">
                       {u.createdAt?.toDate ? u.createdAt.toDate().toLocaleDateString() : '—'}
